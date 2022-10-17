@@ -8,7 +8,7 @@ import morgan from "morgan";
 
 //routes and models
 import routes from "./routes/_routes.js";
-import coursess from "./models/coursesModel.js";
+import courses from "./models/coursesModel.js";
 import settings from "./models/AppSettingModel.js";
 import users from "./models/usersModel.js";
 
@@ -37,7 +37,7 @@ MongoClient.connect(
     process.exit(1);
   })
   .then(async client => {
-    await coursess.injectDB(client)
+    await courses.injectDB(client)
     await settings.injectDB(client)
     await users.injectDB(client)
 

@@ -1,4 +1,4 @@
-import courses from "../models/courseModel.js"
+import courses from "../models/coursesModel.js"
 
 const _PAGE = 20;
 

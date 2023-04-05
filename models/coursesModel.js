@@ -24,6 +24,7 @@ export default class courseModel {
    * Inserts an course into the `courses` collection, with the following fields:
 
    * @param {string} courseID - The _id of the course in the `courses` collection.
+   * @param {string} title - The course title.
    * @param {Object} user - An object containing the user's name and email.
    * @param {Number} courseAmount - The total amount of the course.
    * @param {Number} VAT - The VAT/tax on the course.
@@ -37,6 +38,7 @@ export default class courseModel {
    */
   static async addcourse(
     courseID,
+    title,
     user,
     courseAmount,
     VAT,
@@ -54,6 +56,7 @@ export default class courseModel {
 
       const courseDoc = {
         courseID: courseID,
+        title: title,
         user: user,
         courseAmount: courseAmount,
         VAT: VAT,
@@ -80,6 +83,7 @@ export default class courseModel {
   /**
    * Updates the course in the course collection.
    * @param {string} courseID - The _id of the course in the `courses` collection.
+   * @param {string} title - The course title.
    * @param {Number} courseAmount - The total amount of the course.
    * @param {Number} VAT - The VAT/tax on the course.
    * @param {Number} discount - The discount amount on the course.
@@ -94,6 +98,7 @@ export default class courseModel {
    */
   static async updatecourse(
     courseID,
+    title,
     courseAmount,
     VAT,
     discount,
@@ -115,6 +120,7 @@ export default class courseModel {
         {
           $set: {
             courseAmount: courseAmount,
+            title: title,
             VAT: VAT,
             discount: discount,
             date: date,
@@ -247,7 +253,7 @@ export default class courseModel {
         customer: [
           {
             $bucket: {
-              groupBy: "$customer.name",
+              groupBy: "$title",
               boundaries: [0, 50, 70, 90, 100],
               default: "other",
               output: {
